@@ -3,7 +3,7 @@
 #include "fila.h"
 #include "pilha.h"
 
-
+//funcao para inserir elementos
 void insereElementosNaFila(Fila fila) {
 
     printf("FILA DE NUMEROS\n");
@@ -32,8 +32,8 @@ void consultaTotal(Fila fila) {
     } else {
         printf("Fila vazia!!\n");
     }
-    
-}   
+
+}
 
 void mostraERemove(Fila fila) {
     if (!filaVazia(fila)) {
@@ -51,11 +51,11 @@ void consultaMenor(Fila fila) {
         menor = fila->item[fila->inicio];
 
         while(posicao < fila->final){
-        
+
             if(fila->item[posicao] < menor){
                 menor = fila->item[posicao];
             }
-            posicao++; 
+            posicao++;
         }
 
         printf("O menor valor eh: %d\n", menor);
@@ -73,7 +73,7 @@ void consultaMaior(Fila fila) {
         while(posicao < fila->total){
             if(fila->item[posicao] > maior){
                 maior = fila->item[posicao];
-            } 
+            }
             posicao++;
         }
 
@@ -88,7 +88,7 @@ void consultaMedia(Fila fila) {
 
         int posicao, soma=0, qtdeElem = 0;
         float media;
-        
+
         posicao=fila->inicio;
         while(posicao < fila->final){
             soma += fila->item[posicao];
@@ -142,7 +142,7 @@ void acaoFila() {
 
     while (system)
     {
-        
+
         printf("\n");
         printf("Qual ação de fila deseja executar:\n");
         printf("1 - inserir elemento na fila\n");
@@ -206,7 +206,7 @@ void acaoFila() {
             break;
         }
     }
-    
+
 }
 
 void acaoPilha() {
@@ -216,7 +216,7 @@ void acaoPilha() {
 
     while (system)
     {
-        
+
         printf("\n");
         printf("Qual ação de pilha deseja executar:\n");
         printf("1 - inserir elemento na pilha\n");
@@ -280,7 +280,7 @@ void acaoPilha() {
             break;
         }
     }
-    
+
 }
 
 void main() {
@@ -316,5 +316,5 @@ void main() {
             printf("\n");
             break;
         }
-    } 
+    }
 }
