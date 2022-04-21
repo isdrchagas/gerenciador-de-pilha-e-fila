@@ -106,16 +106,21 @@ void consultaMedia(Fila fila) {
 void consultaParEImpares(Fila fila) {
     if (!filaVazia(fila)) {
         
-        int posicao = 0;
+        int posicao = 0, pares = 0, impares = 0;
         
         while(posicao < fila->total){
             if (fila->item[posicao] % 2 == 0) {
                 printf("O numero %d eh par\n", fila->item[posicao]);
+                pares++;
             } else {
                 printf("O numero %d eh impar\n", fila->item[posicao]);
+                impares++;
             }          
-            posicao++;  
+            posicao++;            
         }
+
+        printf("Quantidade de numeros pares: %d\n", pares);
+        printf("Quantidade de numeros impares: %d\n", impares);
     } else {
         printf("Filha vazia!");
     }
