@@ -4,10 +4,122 @@
 #include "pilha.h"
 
 
+void insereElementosNaFila(Fila fila) {
+
+    printf("FILA DE NUMEROS\n");
+    do{
+        int num;
+
+        printf("Informe o valor a ser inserido na fila:\n");
+        scanf("%d", &num);
+
+        enfileira(num, fila);
+    } while(!filaCheia(fila));
+
+}
+
+void removeElementoFila(Fila fila){
+    if (!filaVazia(fila)) {
+        printf("Elemento desenfileirado: %d\n", desenfileira(fila));
+    } else {
+        printf("Fila vazia!!\n");
+    }
+}
+
+void consultaTotal(Fila fila) {
+    if (!filaVazia(fila)) {
+        printf("Total de elementos: %d", fila->total);
+    } else {
+        printf("Fila vazia!!\n");
+    }
+    
+}   
+
+void mostraERemove(Fila fila) {
+    if (!filaVazia(fila)) {
+        printf("Valores removidos da fila:\n");
+
+        while(!filaVazia(fila)) printf("%d\n", desenfileira(fila));
+    } else {
+        printf("Fila vazia!!\n");
+    }
+}
+
+void consultaMenor(Fila fila) {
+    if (!filaVazia(fila)) {
+        int posicao = 0, maior = 0, menor = 0;
+        menor = fila->item[fila->inicio];
+
+        while(posicao < fila->final){
+        
+            if(fila->item[posicao] < menor){
+                menor = fila->item[posicao];
+            }
+            posicao++; 
+        }
+
+        printf("O menor valor eh: %d\n", menor);
+    } else {
+        printf("Fila vazia!!\n");
+    }
+}
+
+void consultaMaior(Fila fila) {
+
+    if (!filaVazia(fila)) {
+        int posicao = 0, maior=0;
+        maior = fila->item[fila->inicio];
+
+        while(posicao < fila->final){
+            if(fila->item[posicao] > maior){
+                maior = fila->item[posicao];
+            } 
+            posicao++;
+        }
+
+        printf("O maior valor eh: %d\n", maior);
+    } else {
+        printf("Fila vazia!!\n");
+    }
+}
+
+void consultaMedia(Fila fila) {
+     if (!filaVazia(fila)) {
+
+        int posicao, soma=0, qtdeElem = 0;
+        float media;
+        
+        posicao=fila->inicio;
+        while(posicao < fila->final){
+            soma += fila->item[posicao];
+            qtdeElem++;
+            posicao++;
+        }
+
+        media =(float) (soma/qtdeElem);
+        printf("A media eh: %.2f\n", media);
+    } else {
+        printf("Fila vazia!!\n");
+    }
+}
+    
+void removeValorDaFilaEAdiciona(Fila fila, Pilha pilha) {
+    if (!filaVazia(fila)) {
+        empilha(desenfileira(fila), pilha);
+
+        printf("Elemento inserido na pilha:\n");
+        printf("%d", desempilha(pilha));
+    } else {
+        printf("Fila vazia!\n");
+    }
+}
+
 void acaoFila() {
 
     int action;
     bool system = true;
+    Fila fila = inicializaFila(3);
+    Pilha pilha = inicializaPilha(3);
 
     while (system)
     {
@@ -22,7 +134,7 @@ void acaoFila() {
         printf("6 - consultar o menor valor da fila\n");
         printf("7 - consultar a media da fila\n");
         printf("8 - relatório de valores pares e ímpares e a quantidade existente\n");
-        printf("9 - remover um valor da fila e colocar na fila\n");
+        printf("9 - remover um valor da fila e colocar na pilha\n");
         printf("0 - para voltar ao menu anterior\n");
         scanf("%d", &action);
 
@@ -33,31 +145,31 @@ void acaoFila() {
             break;
 
             case 1 :
-            printf ("ação 1 fila\n");
+            insereElementosNaFila(fila);
             break;
 
             case 2 :
-            printf ("ação 2fila\n");
+            removeElementoFila(fila);
             break;
 
             case 3 :
-            printf ("ação 3 fila\n");
+            consultaTotal(fila);
             break;
 
             case 4 :
-            printf ("ação 4 fila\n");
+            mostraERemove(fila);
             break;
 
             case 5 :
-            printf ("ação 5 fila\n");
+            consultaMaior(fila);
             break;
 
             case 6 :
-            printf ("ação 6 fila\n");
+            consultaMenor(fila);
             break;
 
             case 7 :
-            printf ("ação 7 fila\n");
+            consultaMedia(fila);
             break;
 
             case 8 :
@@ -65,7 +177,7 @@ void acaoFila() {
             break;
 
             case 9 :
-            printf ("ação 9 fila\n");
+            removeValorDaFilaEAdiciona(fila, pilha);
             break;
 
 

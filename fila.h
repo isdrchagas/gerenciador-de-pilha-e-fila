@@ -30,12 +30,15 @@ int filaCheia(Fila F){ /*Função que verifica se a fila está ou não cheia*/
 void enfileira(int valor, Fila F){ /*Função que adiciona um item na fila*/
     if(filaCheia(F)) {printf("Fila cheia!!"); abort();}
     F->item[F->final] = valor;
-    avanca(F->final);
+    F->final++;
     F->total++;
 }
 
 int desenfileira(Fila F){ /*Função que remove um item da fila*/
-    if(filaVazia(F)) {printf("Fila vazia!!"); abort();}
+    if(filaVazia(F)) {
+        printf("Fila vazia!!");
+        return false;
+    }
     int valor=F->item[F->inicio];
     avanca(F->inicio);
     F->total--;
