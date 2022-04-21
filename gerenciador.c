@@ -67,10 +67,10 @@ void consultaMenor(Fila fila) {
 void consultaMaior(Fila fila) {
 
     if (!filaVazia(fila)) {
-        int posicao = 0, maior=0;
+        int posicao = 0, maior = 0;
         maior = fila->item[fila->inicio];
 
-        while(posicao < fila->final){
+        while(posicao < fila->total){
             if(fila->item[posicao] > maior){
                 maior = fila->item[posicao];
             } 
@@ -101,6 +101,25 @@ void consultaMedia(Fila fila) {
     } else {
         printf("Fila vazia!!\n");
     }
+}
+
+void consultaParEImpares(Fila fila) {
+    if (!filaVazia(fila)) {
+        
+        int posicao = 0;
+        
+        while(posicao < fila->total){
+            if (fila->item[posicao] % 2 == 0) {
+                printf("O numero %d eh par\n", fila->item[posicao]);
+            } else {
+                printf("O numero %d eh impar\n", fila->item[posicao]);
+            }          
+            posicao++;  
+        }
+    } else {
+        printf("Filha vazia!");
+    }
+    
 }
     
 void removeValorDaFilaEAdiciona(Fila fila, Pilha pilha) {
@@ -173,7 +192,7 @@ void acaoFila() {
             break;
 
             case 8 :
-            printf ("ação 8 fila\n");
+            consultaParEImpares(fila);
             break;
 
             case 9 :

@@ -1,6 +1,7 @@
 #include<stdlib.h>
 #include<stdio.h>
 #define avanca(i) (i=(i+1) % F->max)
+
 typedef struct controle_fila{
     int max; /*capacidade máxima da fila*/
     int total; /*posição do topo*/
@@ -13,7 +14,7 @@ Fila inicializaFila(int qtde_itens){ /*função para inicializar a estrutura da 
     Fila F=malloc(sizeof(struct controle_fila)); /*alocando memória dinamicamente para a struct controle_fila*/
     F->max=qtde_itens; /*definindo a quantidade máxima de itens a serem manipulados na fila*/
     F->total=0; /*A fila está vazia, não há nenhum elemento armazenado inicialmente*/
-    F->inicio=0; /*A fila está vazia, não há nenhum elemento no ínjcio*/
+    F->inicio=0; /*A fila está vazia, não há nenhum elemento no inicio*/
     F->final=0; /*A fila está vazia, não há nenhum elemento no final*/
     F->item = malloc(qtde_itens*sizeof(int)); /*alocando memória suficiente para a coleção de itens da fila*/
     return F;
@@ -28,9 +29,12 @@ int filaCheia(Fila F){ /*Função que verifica se a fila está ou não cheia*/
 }
 
 void enfileira(int valor, Fila F){ /*Função que adiciona um item na fila*/
-    if(filaCheia(F)) {printf("Fila cheia!!"); abort();}
+    if(filaCheia(F)) {
+        printf("Fila cheia!!");
+        return;
+    }
     F->item[F->final] = valor;
-    F->final++;
+    avanca(F->final);
     F->total++;
 }
 
