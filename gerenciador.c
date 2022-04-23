@@ -270,11 +270,81 @@ void consultaMaiorElementoPilha(Pilha pilha){
     
 }
 
+void consultaMenorPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        int posicao = 0, menor = pilha->item[pilha->topo];
+
+        while(posicao < pilha->max){
+            if(pilha->item[posicao] < menor){
+                menor = pilha->item[posicao];
+            }
+            posicao++;
+        }
+
+        printf("O menor valor eh: %d\n", menor);
+    } else {
+        printf("Pilha vazia!!\n");
+    }
+}
+
+void consultaMediaPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        int posicao =0, soma=0, qtdeElem = 0;
+        float media;
+
+        while(posicao < pilha->max){
+            soma+= pilha->item[posicao];
+            qtdeElem++;
+            posicao++;
+        }
+        
+        media =(soma/(float) qtdeElem);
+        printf("A media eh: %.2f\n", media);
+    } else {
+        printf("Pilha vazia!!\n");
+    }
+}
+
+void consultaParImparPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        int posicao = 0, pares = 0, impares = 0;
+        
+        while(posicao < pilha->max){
+            if (pilha->item[posicao] % 2 == 0) {
+                printf("O numero %d eh par\n", pilha->item[posicao]);
+                pares++;
+            } else {
+                printf("O numero %d eh impar\n", pilha->item[posicao]);
+                impares++;
+            }          
+            posicao++;            
+        }
+
+        printf("Quantidade de numeros pares: %d\n", pares);
+        printf("Quantidade de numeros impares: %d\n", impares);
+    } else {
+        printf("Pilha vazia!!\n");
+    }
+
+}
+
+void removeValorDaPilhaEAdiciona(Fila fila, Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        enfileira(desempilha(pilha), fila);
+
+        printf("Elemento inserido na fila:\n");
+        printf("%d", desenfileira(fila));
+    } else {
+        printf("Pilha vazia!\n");
+    }
+}
+
 void acaoPilha() {
 
     int action;
     bool system = true;
     Pilha pilha = inicializaPilha(3);
+    Fila fila = inicializaFila(3);
 
     while (system)
     {
@@ -320,19 +390,19 @@ void acaoPilha() {
             break;
 
             case 6 :
-            printf ("ação 6 pilha\n");
+            consultaMenorPilha(pilha);
             break;
 
             case 7 :
-            printf ("ação 7 pilha\n");
+            consultaMediaPilha(pilha);
             break;
 
             case 8 :
-            printf ("ação 8 pilha\n");
+            consultaParImparPilha(pilha);
             break;
 
             case 9 :
-            printf ("ação 9 pilha\n");
+            removeValorDaPilhaEAdiciona(fila, pilha);
             break;
 
 
