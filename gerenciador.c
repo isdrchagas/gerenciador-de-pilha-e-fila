@@ -47,8 +47,7 @@ void mostraERemove(Fila fila) {
 
 void consultaMenor(Fila fila) {
     if (!filaVazia(fila)) {
-        int posicao = 0, maior = 0, menor = 0;
-        menor = fila->item[fila->inicio];
+        int posicao = 0, maior = 0, menor = fila->item[fila->inicio];
 
         while(posicao < fila->final){
 
@@ -67,8 +66,7 @@ void consultaMenor(Fila fila) {
 void consultaMaior(Fila fila) {
 
     if (!filaVazia(fila)) {
-        int posicao = 0, maior = 0;
-        maior = fila->item[fila->inicio];
+        int posicao = 0, maior = fila->item[fila->inicio];
 
         while(posicao < fila->total){
             if(fila->item[posicao] > maior){
@@ -256,8 +254,7 @@ void consultaERemoveElementosPilha(Pilha pilha) {
 
 void consultaMaiorElementoPilha(Pilha pilha){
     if (!pilhaVazia(pilha)) {
-        int posicao = 0, maior = 0;
-        maior = pilha->item[pilha->topo];
+        int posicao = 0, maior = pilha->item[pilha->topo];
 
         while(posicao < pilha->max){
             if(pilha->item[posicao] > maior){
