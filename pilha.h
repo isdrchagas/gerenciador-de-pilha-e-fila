@@ -25,13 +25,14 @@ int pilhaCheia(Pilha P){ /*Função que verifica se a pilha está ou não cheia*
 }
 
 void empilha(int valor, Pilha P){ /*Função a ser chamada para colocar um item na pilha */
-    if(pilhaCheia(P)) { printf("pilha cheia!"); abort();} /*Se a pilha estiver cheia, não será permitido colocar mais itens*/
+    if(pilhaCheia(P)) { printf("pilha cheia!"); return;} /*Se a pilha estiver cheia, não será permitido colocar mais itens*/
     P->topo++; /*Ao empilhar um novo item, é preciso incrementar o valor que armazena o item que está no topo*/
     P->item[P->topo] = valor; /*Incluindo o valor na pilha*/
 }
 
 int desempilha (Pilha P){ /*Função responsável por desempilhar (retirar) o item da pilha que está atualmente no topo*/
-    if(pilhaVazia(P)) {printf("pilha vazia!"); abort();} /*se a pilha estiver vazia, não há nada a se retirar da pilha*/
+    if(pilhaVazia(P)) {
+        printf("pilha vazia!"); return false;} /*se a pilha estiver vazia, não há nada a se retirar da pilha*/
     int valor = P->item[P->topo]; /*Obtem o valor do item armazenado no topo da pilha*/
     P->topo--; /*decrementa o valor que indica o item que é o topo da pilha*/
     return valor; /*retorna o valor desempilhado*/

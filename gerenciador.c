@@ -214,10 +214,70 @@ void acaoFila() {
 
 }
 
+void insereElementosNaPilha(Pilha pilha) {
+
+    printf("PILHA DE NUMEROS\n");
+    do{
+        int num;
+
+        printf("Informe o valor a ser inserido na pilha:\n");
+        scanf("%d", &num);
+
+        empilha(num,pilha);
+    } while(!pilhaCheia(pilha));
+    
+}
+
+void removeElementoPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        printf("Elemento desempilhado: %d\n", desempilha(pilha));
+    } else {
+        printf("Pilha vazia!\n");
+    }
+}
+
+void consultaTotalElementosPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        printf("Total de elementos na pilha: %d\n", pilha->max);
+    } else {
+        printf("Pilha vazia!\n");
+    }
+}
+
+void consultaERemoveElementosPilha(Pilha pilha) {
+    if (!pilhaVazia(pilha)) {
+        printf("Valores removidos da pilha:\n");
+
+        while(!pilhaVazia(pilha)) printf("%d\n", desempilha(pilha));
+    } else {
+        printf("Pilha vazia!\n");
+    }   
+}
+
+void consultaMaiorElementoPilha(Pilha pilha){
+    if (!pilhaVazia(pilha)) {
+        int posicao = 0, maior = 0;
+        maior = pilha->item[pilha->topo];
+
+        while(posicao < pilha->max){
+            if(pilha->item[posicao] > maior){
+                maior = pilha->item[posicao];
+            }
+            posicao++;
+        }
+
+        printf("O maior valor eh: %d\n", maior);
+    } else {
+        printf("Pilha vazia!\n");
+    }
+    
+}
+
 void acaoPilha() {
 
     int action;
     bool system = true;
+    Pilha pilha = inicializaPilha(3);
 
     while (system)
     {
@@ -243,23 +303,23 @@ void acaoPilha() {
             break;
 
             case 1 :
-            printf ("ação 1 pilha\n");
+            insereElementosNaPilha(pilha);
             break;
 
             case 2 :
-            printf ("ação 2 pilha\n");
+            removeElementoPilha(pilha);
             break;
 
             case 3 :
-            printf ("ação 3 pilha\n");
+            consultaTotalElementosPilha(pilha);
             break;
 
             case 4 :
-            printf ("ação 4 pilha\n");
+            consultaERemoveElementosPilha(pilha);
             break;
 
             case 5 :
-            printf ("ação 5 pilha\n");
+            consultaMaiorElementoPilha(pilha);
             break;
 
             case 6 :
