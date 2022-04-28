@@ -124,24 +124,19 @@ void consultaParEImpares(Fila fila) {
     }
     
 }
-    
+
 void removeValorDaFilaEAdiciona(Fila fila, Pilha pilha) {
     if (!filaVazia(fila)) {
         empilha(desenfileira(fila), pilha);
-
-        printf("Elemento inserido na pilha:\n");
-        printf("%d", desempilha(pilha));
     } else {
         printf("Fila vazia!\n");
     }
 }
 
-void acaoFila() {
+void acaoFila(Fila fila, Pilha pilha) {
 
     int action;
     bool system = true;
-    Fila fila = inicializaFila(3);
-    Pilha pilha = inicializaPilha(3);
 
     while (system)
     {
@@ -236,7 +231,7 @@ void removeElementoPilha(Pilha pilha) {
 
 void consultaTotalElementosPilha(Pilha pilha) {
     if (!pilhaVazia(pilha)) {
-        printf("Total de elementos na pilha: %d\n", pilha->max);
+        printf("Total de elementos na pilha: %d\n", pilha->topo + 1);
     } else {
         printf("Pilha vazia!\n");
     }
@@ -332,19 +327,15 @@ void removeValorDaPilhaEAdiciona(Fila fila, Pilha pilha) {
     if (!pilhaVazia(pilha)) {
         enfileira(desempilha(pilha), fila);
 
-        printf("Elemento inserido na fila:\n");
-        printf("%d", desenfileira(fila));
     } else {
         printf("Pilha vazia!\n");
     }
 }
 
-void acaoPilha() {
+void acaoPilha(Fila fila, Pilha pilha) {
 
     int action;
     bool system = true;
-    Pilha pilha = inicializaPilha(3);
-    Fila fila = inicializaFila(3);
 
     while (system)
     {
@@ -419,6 +410,8 @@ void main() {
 
     int action;
     bool system = true;
+    Fila fila = inicializaFila(3);
+    Pilha pilha = inicializaPilha(3);
 
     printf("::::::: GERENCIADOR DE FILAS E PILHAS :::::::\n");
     printf("\n");
@@ -436,11 +429,11 @@ void main() {
             break;
 
             case 1 :
-            acaoFila();
+            acaoFila(fila, pilha);
             break;
 
             case 2 :
-            acaoPilha();
+            acaoPilha(fila, pilha);
             break;
 
             default :
